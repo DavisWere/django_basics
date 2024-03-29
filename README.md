@@ -19,6 +19,7 @@ cd mysite     # go to your project directory
 python manage.py startapp myapp #myapp is your app name
 python manage.py makemigrations 
 python manage.py migrate
+python manage.py createsuperuser
 python manage.py runserver      #run server
  
 
