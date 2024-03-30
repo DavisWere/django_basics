@@ -11,15 +11,22 @@ env\Scripts\activate   # for windows
 source env/bin/activate    #for mac and linux
 
 # install packages  
-pip install django   # this will install django in our virtual environment
+pip install -r requirements.txt  # this will install all packages in requirements.txt in our virtual environment
 
-# run the project
-django-admin startproject mysite   #mysite is your project name
+# start django project
+django-admin startproject mysite   # mysite is your project name
 cd mysite     # go to your project directory
+
+# start django app
 python manage.py startapp myapp #myapp is your app name
-python manage.py makemigrations 
-python manage.py migrate
+
+# makemigrations
+python manage.py makemigrations  # anytime you alter or add models makemigrations
+python manage.py migrate  # and migrate as well
+
+# create superuser
 python manage.py createsuperuser
+# run server
 python manage.py runserver      #run server
  
 
