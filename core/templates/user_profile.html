@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Add any necessary CSS stylesheets or links here -->
+</head>
+<body>
+    <h1>User Profile</h1>
+
+    <div>
+        <h2>{{ user.username }}</h2>
+        <p>First Name: {{ user.first_name }}</p>
+        <p>Last Name: {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Phone Number: {{ user.phone_code }}{{ user.phone_number }}</p>
+        {% if user.profile_picture %}
+            <img src="{{ user.profile_picture.url }}" alt="Profile Picture">
+        {% else %}
+            <p>No profile picture available</p>
+        {% endif %}
+        <p>User Type: {{ user.get_user_type_display }}</p>
+    </div>
+
+    <!-- Add any additional content or sections as needed -->
+
+</body>
+</html>

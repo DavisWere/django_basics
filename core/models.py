@@ -18,3 +18,9 @@ class CustomUser(AbstractUser):
         return self.username
     
 
+class StudentMarks(models.Model):
+    database1 = models.FloatField(null=False)
+    database2 = models.FloatField(null=False)
+
+    def __str__(self):
+        return self.datbase1
