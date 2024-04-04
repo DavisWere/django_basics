@@ -7,6 +7,8 @@ from django.urls import reverse
 app_name = 'core'
 
 urlpatterns = [
-    path('user/', views.create_user, name='user registration form'),
-    path('user_profile', views.user_profile, name = 'profile')
+    path('register', views.create_user, name='user registration form'),
+    path('home/', views.home, name = 'home page'), # homepage 127.0.0.1:8000
+    path('users', views.Display_users, name = 'available users'),
+    path('login', views.login_view, name= 'login user'),
 ]
