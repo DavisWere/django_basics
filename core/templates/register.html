@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-2 h-screen">
+    <div class="bg-gray-50 h-full w-full p-2 rounded flex justify-center items-center">
+        <div class="flex flex-col gap-4">
+            <h1 class="text-4xl font-extrabold">Skin Disease Detection</h1>
+
+            <form id="userForm" class="mb-4" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+
+                <div class="flex flex-col mb-2">
+                    <label for="first_name" class="mb-1">First Name</label>
+                    <input type="text" id="first_name" name="first_name" required placeholder="Enter your  first name" class="px-4 py-2 border-b rounded">
+                </div>
+                <div class="flex flex-col mb-2">
+                    <label for="last_name" class="mb-1">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" required placeholder="Enter your  last name" class="px-4 py-2 border-b rounded">
+                </div>
+                <div class="flex flex-col mb-2">
+                    <label for="phone_code" class="mb-1">phone code</label>
+                    <input type="phone" id="phone_code" name="phone_code" required placeholder="Enter the phone code" class="px-4 py-2 border-b rounded">
+                </div>
+                <div class="flex flex-col mb-2">
+                    <label for="phone_number" class="mb-1">Phone number</label>
+                    <input type="phone" id="phone_number" name="phone_number" required placeholder=" 7123456789" class="px-4 py-2 border-b rounded">
+                </div>
+                <div class="flex flex-col mb-2">
+                    <label for="user_type" class="mb-1">How do you intend to use our platform</label>
+                    <input type="text" id="user_type" name="user_type" required placeholder="user type" class="px-4 py-2 border-b rounded">
+                </div>
+                <div class="flex flex-col mb-2">
+                    <label for="email" class="mb-1">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email" class="px-4 py-2 border-b rounded">
+                </div>
+                <div class="flex flex-col mb-2">
+                    <label for="password1" class="mb-1">Password</label>
+                    <input type="password" id="password1" name="password" required placeholder="Enter your password" class="px-4 py-2 border-b rounded">
+                </div>
+                <!-- <div class="flex flex-col mb-2">
+                    <label for="password2" class="mb-1">Confirm Password</label>
+                    <input type="password" id="password2" name="password2" required placeholder="Confirm your password" class="px-4 py-2 border-b rounded">
+                </div> -->
+                <div class="flex flex-col mb-2">
+                    <label for="username" class="mb-1">Username</label>
+                    <input type="text" id="username" name="username"
+                     required placeholder=" username" class="px-4 py-2 border-b rounded">
+                </div>
+                
+
+                {% if form.errors %}
+                    <div id="error" class="errors bg-red-200 p-4 rounded fixed top-2 right-2">
+                        <button onclick="closeError()" class="p-2 bg-red-300 rounded absolute top-2 right-2 hover:bg-red-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+                        </button> 
+                        <h3>Errors:</h3>
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <div class="w-full flex justify-end mb-2">
+                    <a href="/login" class="font-bold text-sm">Already have an account? Sign In</a>
+                </div>
+                <div class="w-full flex justify-center">
+                    <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors w-fit mx-auto">Register</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        function closeError() {
+            document.getElementById("error").style.display = "none";
+        }
+
+        // Show error message again if form has errors
+        window.onload = function() {
+            var formErrors = document.getElementsByClassName("errors");
+            if (formErrors.length > 0) {
+                document.getElementById("error").style.display = "block";
+            }
+        }
+    </script>
+    
+</body>
+</html>

@@ -6,7 +6,8 @@ from core .models import CustomUser
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from core .forms import CustomUserCreationForm, StudentMakrsForm
+from core .forms import CustomUserCreationForm, StudentMakrsForm, CustomUserRegistrationForm
+
 
 
 
@@ -49,6 +50,20 @@ def Display_users(request):
     else:
         return redirect("login")
     
+@login_required   
+def Dashboard(request ):
+    user =request.user
+    if user is not None:
+        if user.user_type == 'employee':
+            users = CustomUser.objects.filter(user_type ='employee')
+            return render(request,'employee_dashboard.html','employee')
+        else: 
+            return render(request,'employer_dashboard.html')
+    else:
+        return redirect('/login')
+
+
+    
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -66,3 +81,13 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
+def register_user(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save() 
+            # Redirect to a success page or login page
+            return redirect('/login')  
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'register.html', {'form': form})
